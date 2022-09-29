@@ -1,13 +1,13 @@
-@startuml 
+@startuml
 skinparam classAttributeIconSize 0
 ' this is to use the standard notation for public, protected, private
 
 class Main {
-- {static} NUM_SQUARES : int
-- {static} PLAYER_NAMES : String[]
-- {static} SNAKES_FROM_TO : int[][]
-- {static} LADDERS_FROM_TO : int[][]
-- {static} main(String[] args)
+    - {static} NUM_SQUARES : int
+    - {static} PLAYER_NAMES : String[]
+    - {static} SNAKES_FROM_TO : int[][]
+    - {static} LADDERS_FROM_TO : int[][]
+    - {static} main(String[] args)
 }
 
 class Game {
@@ -29,8 +29,7 @@ class Board {
     + lastSquare() : Square
     + findSquare() : Square
     + numberOfSquares() : int
-    - makeSnakes(snakes : int[][])
-    - makeLadders(ladders : int[][])
+    - makeSnakesOrLadders(ladders : int[][])
 }
 
 class Die {
@@ -54,20 +53,15 @@ class Square {
 }
 
 class Player {
-- name : String
-+ moveForward(moves : int)
-+ getPosition() : int
-+ wins() : boolean
+    - name : String
+    + moveForward(moves : int)
+    + getPosition() : int
+    + wins() : boolean
 }
 
-class Snake extends Square {
+class SnakeOrLadder extends Square {
     - transport : int
-    # landHereOrGoHome() : Square
-    - destination() : Square
-}
-
-class Ladder extends Square {
-    - transport : int
+    - isSnake : boolean
     # landHereOrGoHome() : Square
     - destination() : Square
 }

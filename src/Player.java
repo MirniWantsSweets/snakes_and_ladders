@@ -27,6 +27,10 @@ public class Player {
     return square.isLastSquare();
   }
 
+  public boolean died(){    
+    return square.isDeath();
+  }
+
   public void moveForward(int moves) {
     assert moves > 0 : "non-positive moves";
     square.leave(this);

@@ -49,6 +49,10 @@ public class Square {
     }
   }
 
+  public boolean isDeath(){
+    return false;
+  }
+
   protected boolean isOccupied() {
 	  return player != null;
   }
@@ -60,4 +64,5 @@ public class Square {
   protected Square findFirstSquare() {
 	  return board.firstSquare();
   }
+  
 }

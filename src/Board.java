@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public final class Board {
 	private ArrayList<Square> squares = new ArrayList<>();
@@ -11,7 +12,7 @@ public final class Board {
 		// makeSnakes(snakes);
 
 		makeSnakesOrLadders(ladders, false);
-		makeSnakesOrLadders(ladders, true);
+		makeSnakesOrLadders(snakes, true);
 	}
 
 	public Square firstSquare() {
@@ -35,10 +36,24 @@ public final class Board {
 	private void makeSquares(int numSquares) {
 		System.out.println("There are " + numSquares + " squares");
 		squares.add(new FirstSquare(this));
-		for (int position=1 ; position<numSquares ; position++) {
-			Square square = new Square(position, this);
-			squares.add(square);
+		
+		int nDeathSquares = numSquares/6;
+		ArrayList<Integer> deathSquaresPositions = new ArrayList<Integer>();
+		for(int i = 0 ; i < nDeathSquares ; i++){
+			int randomNum = ThreadLocalRandom.current().nextInt(1, numSquares);
+
+			deathSquaresPositions.add(randomNum);
 		}
+		
+		for (int position=1 ; position<numSquares ; position++) {
+			if(deathSquaresPositions.contains(position)){
+				squares.add(new Death(position, this));
+			}else{
+				Square square = new Square(position, this);
+				squares.add(square);
+			}
+		}
+		
 		assert squares.get(numSquares-1).isLastSquare();
 	}
 
