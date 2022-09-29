@@ -1,0 +1,87 @@
+There are 12 squares
+Death square added at postion: 6
+Death square added at postion: 10
+ladderfrom 2 to 6
+ladderfrom 7 to 9
+snakefrom 11 to 5
+Players are : 
+1. Ana
+2. Blanca
+3. Carles
+4. Didac
+Initial state : 
+Ana is at square 1
+Blanca is at square 1
+Carles is at square 1
+Didac is at square 1
+
+Current player is Ana and rolls 3
+move from 1 to 4
+land at 4
+State : 
+Blanca is at square 1
+Carles is at square 1
+Didac is at square 1
+Ana is at square 4
+
+Current player is Blanca and rolls 4
+move from 1 to 5
+land at 5
+State : 
+Carles is at square 1
+Didac is at square 1
+Ana is at square 4
+Blanca is at square 5
+
+Current player is Carles and rolls 5
+move from 1 to 6
+land at 6
+The player Carles died
+State : 
+Didac is at square 1
+Ana is at square 4
+Blanca is at square 5
+
+Current player is Didac and rolls 3
+move from 1 to 4
+square 4 is occupied, go to square 1
+State : 
+Ana is at square 4
+Blanca is at square 5
+Didac is at square 1
+
+Current player is Ana and rolls 3
+move from 4 to 7
+ladderfrom 7 to 9
+land at 9
+State : 
+Blanca is at square 5
+Didac is at square 1
+Ana is at square 9
+
+Current player is Blanca and rolls 4
+move from 5 to 9
+square 9 is occupied, go to square 1
+State : 
+Didac is at square 1
+Ana is at square 9
+Blanca is at square 1
+
+Current player is Didac and rolls 6
+move from 1 to 7
+ladderfrom 7 to 9
+square 9 is occupied, go to square 1
+State : 
+Ana is at square 9
+Blanca is at square 1
+Didac is at square 1
+
+Current player is Ana and rolls 3
+move from 9 to 12
+land at 12
+State : 
+Blanca is at square 1
+Didac is at square 1
+Ana is at square 12
+
+Ana has won after 8 rounds
