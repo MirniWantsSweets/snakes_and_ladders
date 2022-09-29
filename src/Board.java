@@ -7,8 +7,11 @@ public final class Board {
 	public Board(int numSquares, int[][] ladders, int[][] snakes) {
 		assert numSquares > MIN_NUM_SQUARES : "There must be at least " + MIN_NUM_SQUARES + " squares";
 		makeSquares(numSquares);
-		makeLadders(ladders);
-		makeSnakes(snakes);
+		// makeLadders(ladders);
+		// makeSnakes(snakes);
+
+		makeSnakesOrLadders(ladders, false);
+		makeSnakesOrLadders(ladders, true);
 	}
 
 	public Square firstSquare() {
@@ -72,4 +75,26 @@ public final class Board {
 			squares.set(fromPosition, new Ladder(fromPosition,this, transport));
 		}
     }    
+
+    private void makeSnakesOrLadders(int[][] ladders, boolean isSnake) {
+		for (int i=0; i<ladders.length; i++) {
+			assert ladders[i].length == 2;
+			
+			int fromPosition = ladders[i][0]-1;
+			int toPosition = ladders[i][1]-1;
+			int transport = toPosition - fromPosition;
+			if(isSnake){
+				assert transport<0 : "In snake, destination equal or after origin";
+				assert (toPosition > 0) && (toPosition<numberOfSquares()-1);
+				assert (fromPosition < numberOfSquares()-1) && (fromPosition>0);
+			}else{
+				assert transport>0 : "In ladder, origin equal or after destination";
+				assert (toPosition < numberOfSquares()) && (toPosition > 0);
+				assert (fromPosition > 0) && (fromPosition < numberOfSquares());
+			}
+
+			System.out.println((isSnake ? "snake" : "ladder") + "from " + (fromPosition+1) + " to " + (toPosition+1));
+			squares.set(fromPosition, new SnakeOrLadder(fromPosition,this, transport, isSnake));
+		}
+	}
 }
