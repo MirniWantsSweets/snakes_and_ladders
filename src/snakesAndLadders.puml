@@ -73,6 +73,10 @@ class FirstSquare extends Square {
     + leave(p : Player)
 }
 
+class Death extends Square {
+    # isDeath() : boolean
+}
+
 ' relative position of classes not related by association
 ' or composition with hidden arrows
 Main -[hidden]down-> Game
