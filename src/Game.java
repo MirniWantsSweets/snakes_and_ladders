@@ -22,13 +22,20 @@ public final class Game {
 		System.out.println("Initial state : \n" + this);
 		int numRounds = 0;
 		while (notOver()) {
+			if(players.isEmpty()){
+				break;
+			}
 			int roll = die.roll();
 			System.out.println("Current player is " + currentPlayer() + " and rolls " + roll);
 			movePlayer(roll);
 			System.out.println("State : \n" + this);
 			numRounds++;
 		}
-		System.out.println(winner + " has won after " + numRounds + " rounds");
+		if(notOver()){
+			System.out.println("All players died, game is over");
+		}else{
+			System.out.println(winner + " has won after " + numRounds + " rounds");
+		}
 	}
 
 	private void makeBoard(int numSquares, int[][] ladders, int[][] snakes) {
@@ -65,11 +72,11 @@ public final class Game {
 	private void movePlayer(int roll) {
 		Player currentPlayer = players.remove(); // the first element of the list
 		currentPlayer.moveForward(roll);
-		if(!currentPlayer.died()){
-			players.add(currentPlayer); // to the end of list, we're using the linked list as a queue
+		if(currentPlayer.died()){			 
 			System.out.println("The player " + currentPlayer.getName() + " died");
 			return;
 		}
+		players.add(currentPlayer);// to the end of list, we're using the linked list as a queue
 		if (currentPlayer.wins()) {
 			winner = currentPlayer;
 		}

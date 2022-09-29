@@ -35,6 +35,9 @@ public class Player {
     assert moves > 0 : "non-positive moves";
     square.leave(this);
     square = square.moveAndLand(moves);
-    square.enter(this);
+
+    if(!square.isDeath()){
+      square.enter(this);      
+    }
   }
 }
