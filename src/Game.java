@@ -67,6 +67,7 @@ public final class Game {
 		currentPlayer.moveForward(roll);
 		if(!currentPlayer.died()){
 			players.add(currentPlayer); // to the end of list, we're using the linked list as a queue
+			System.out.println("The player " + currentPlayer.getName() + " died");
 			return;
 		}
 		if (currentPlayer.wins()) {
